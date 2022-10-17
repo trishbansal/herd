@@ -4,6 +4,8 @@
 - Understand xcode vibes
 
 
+<br>
+
 ## flow
 - Homepage
   -> User authentication + creation
@@ -29,11 +31,15 @@
   - User Matching
   
   
+<br>
+
 ## WEEKLY CODING SESSION to combine front end + back end for page 
 
+<br>
 
 ## General design ideas?:
   - Want to use auto-layout on xcode to translate design to dif phone sizes
 
+<br>
 
 ## Weekly Progress:
