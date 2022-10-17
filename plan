@@ -1,0 +1,21 @@
+##todo items
+
+
+##plan
+- Frontend:
+  - Homepage
+    - Backend: user authentication + user creation
+  - Friends
+  - Map - set location, range, time etc.
+    - Calculations for matching people
+  - Finding/found herd
+    - Accepting and rejecting walks
+  - Chat (at end)
+  - Transitions between pages (at end) 
+  
+- Backend:
+  - User data
+  - Map info
+  - User Matching
+  
+  WEEKLY CODING SESSION to combine front end + back end for page 
