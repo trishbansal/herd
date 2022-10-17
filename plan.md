@@ -1,10 +1,10 @@
-##todo items
+## todo items
 - Initial plan
 - Assign general pieces
 - Understand xcode vibes
 
 
-##flow
+## flow
 - Homepage
   -> User authentication + creation
 - Friends
@@ -29,17 +29,11 @@
   - User Matching
   
   
-##WEEKLY CODING SESSION to combine front end + back end for page 
+## WEEKLY CODING SESSION to combine front end + back end for page 
 
 
-##General design constants:
+## General design ideas?:
   - Want to use auto-layout on xcode to translate design to dif phone sizes
 
 
-##Weekly Progress:
-1. Week of Oct 17:
-  - 
-
-2. Week of Oct 24:
-  - 
-
+## Weekly Progress:
