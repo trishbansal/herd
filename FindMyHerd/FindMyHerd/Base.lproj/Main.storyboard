@@ -99,6 +99,9 @@
                                         <rect key="frame" x="0.0" y="216" width="310" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="signUpTapped:" destination="MV6-OO-ABj" eventType="touchUpInside" id="lbf-cF-TM2"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFw-G9-gYP">
                                         <rect key="frame" x="0.0" y="270.33333333333331" width="310" height="20.333333333333314"/>
@@ -118,10 +121,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qTM-9a-DdZ"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="GUd-q8-SVv" id="FzM-Wb-Ipa"/>
+                        <outlet property="errorLabel" destination="oFw-G9-gYP" id="Xb3-BR-idG"/>
+                        <outlet property="firstNameTextField" destination="j0g-5M-mQg" id="4UV-hP-FD6"/>
+                        <outlet property="lastNameTextField" destination="ezy-e4-y8Y" id="Abg-Tt-VpP"/>
+                        <outlet property="passwordTextField" destination="1MH-Jy-9hh" id="uVa-on-Dfd"/>
+                        <outlet property="signUpButton" destination="2Nn-QQ-TGn" id="eNw-6p-qNM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="peW-f6-7f1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1490.7692307692307" y="-348.34123222748815"/>
+            <point key="canvasLocation" x="1638" y="-348"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="NLL-Rv-4PS">
@@ -148,6 +159,9 @@
                                         <rect key="frame" x="0.0" y="108" width="310" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Login"/>
+                                        <connections>
+                                            <action selector="loginTapped:" destination="3aY-XG-Mf3" eventType="touchUpInside" id="u3e-Im-iMB"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CE2-AC-04q">
                                         <rect key="frame" x="0.0" y="162.33333333333334" width="310" height="20.333333333333343"/>
@@ -167,10 +181,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zH8-Ce-Btk"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="9ny-mw-iyV" id="dXn-kl-bpi"/>
+                        <outlet property="errorLabel" destination="CE2-AC-04q" id="AVY-8E-E5Z"/>
+                        <outlet property="loginButton" destination="JB5-Hv-czi" id="w6N-TB-Hlw"/>
+                        <outlet property="passwordTextField" destination="wpi-Gf-L2v" id="h0Z-Jj-vtq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VeR-Pe-Ogj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1491" y="314"/>
+            <point key="canvasLocation" x="1637" y="311"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="hkg-Ma-25C">
@@ -197,7 +217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcQ-iH-P95" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2208" y="4"/>
+            <point key="canvasLocation" x="2477" y="4"/>
         </scene>
     </scenes>
     <resources>
