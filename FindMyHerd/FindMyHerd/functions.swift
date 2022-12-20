@@ -43,3 +43,31 @@ func setUserWalkTime(username: String, time_hour: Int, time_min: Int) {
     try db.run(insert)
 }
 
+//Function 5: matchUserToWalk
+//Input: one userWalk, db of Walks
+//Function: deletes the given userWalk from db and adds the corresponding user to a Walk
+func matchUserToWalk(userwalk: UserWalk, walks: [Walk], radius: Int) {
+    var start_matches: [(Float, Float)] = []
+    var end_matches: [(Float, Float)] = []
+    for (latitude, longitude, walk_id) in walks.start_loc {
+        let distance = getDistance(lat: userwalk.start_loc[0], lon: userwalk.start_loc[1], lat2: latitude, lon2: longitude)
+        if distance <= radius {
+            start_matches.append(walk_id)
+        }
+    }
+    for (latitude, longitude, walk_id) in walks.end_loc {
+        let distance = getDistance(lat: userwalk.end_loc[0], lon: userwalk.end_loc[1], lat2: latitude, lon2: longitude)
+        if distance <= radius {
+            end_matches.append(walk_id)
+        }
+    }
+    return Set(start_matches).union(Set(end_matches))
+    //will need to add guardrails --> if no union is found increase radius and try again?
+}
+
+//Function 6: getDistance
+//Input: 2 lats and longs
+//Output: distance
+func getDistance(lat: Float, lon: Float, lat2: Float, lon2: Float) {
+    //There is a way to do this that is front end and more accurate --> like actually between the points, lets discuss
+}
