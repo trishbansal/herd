@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5603A82F2959BC6E0008B14A /* UserClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603A82E2959BC6E0008B14A /* UserClass.swift */; };
+		5603A8312959BCBA0008B14A /* dbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603A8302959BCBA0008B14A /* dbHelper.swift */; };
 		56C72ED9290C6D94001A23A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C72ED8290C6D94001A23A1 /* AppDelegate.swift */; };
 		56C72EDB290C6D94001A23A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C72EDA290C6D94001A23A1 /* SceneDelegate.swift */; };
 		56C72EDD290C6D94001A23A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C72EDC290C6D94001A23A1 /* ViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5603A82E2959BC6E0008B14A /* UserClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserClass.swift; sourceTree = "<group>"; };
+		5603A8302959BCBA0008B14A /* dbHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbHelper.swift; sourceTree = "<group>"; };
 		56C72ED5290C6D94001A23A1 /* FindMyHerd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMyHerd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56C72ED8290C6D94001A23A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56C72EDA290C6D94001A23A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 				56C72EE1290C6D96001A23A1 /* Assets.xcassets */,
 				56C72EE3290C6D96001A23A1 /* LaunchScreen.storyboard */,
 				56C72EE6290C6D96001A23A1 /* Info.plist */,
+				5603A82E2959BC6E0008B14A /* UserClass.swift */,
+				5603A8302959BCBA0008B14A /* dbHelper.swift */,
 			);
 			path = FindMyHerd;
 			sourceTree = "<group>";
@@ -158,9 +164,11 @@
 				56E6C9C329147B1A00D4DBA7 /* LoginViewController.swift in Sources */,
 				56C72EDD290C6D94001A23A1 /* ViewController.swift in Sources */,
 				56C72ED9290C6D94001A23A1 /* AppDelegate.swift in Sources */,
+				5603A82F2959BC6E0008B14A /* UserClass.swift in Sources */,
 				56C72EED290C6E15001A23A1 /* SignupViewController.swift in Sources */,
 				56C72EDB290C6D94001A23A1 /* SceneDelegate.swift in Sources */,
 				56C72EF1290C6E91001A23A1 /* HomeViewController.swift in Sources */,
+				5603A8312959BCBA0008B14A /* dbHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
