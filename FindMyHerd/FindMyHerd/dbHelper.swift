@@ -37,7 +37,7 @@ class dbHelper {
         }
     
         
-        //TODO: make this generic - want to use vars not names!!
+        //TODO: make this generic - want to use vars not names!! --> \(variable)
         func createTable() {
             let createTableString = "CREATE TABLE IF NOT EXISTS person(Id INTEGER PRIMARY KEY,name TEXT,age INTEGER);"
             var createTableStatement: OpaquePointer? = nil
