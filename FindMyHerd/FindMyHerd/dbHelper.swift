@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import SQLite3
 
 class dbHelper {
@@ -15,8 +14,8 @@ class dbHelper {
         createTable()
     }
     
-//    !!!!! not vetted lol !!!!!
 //    TODO: edit class names; make new class names; edit/make attribute names
+    
     let dbPath: String = "myDb.sqlite"
         var db:OpaquePointer?
 
@@ -36,7 +35,9 @@ class dbHelper {
                 return db
             }
         }
+    
         
+        //TODO: make this generic - want to use vars not names!!
         func createTable() {
             let createTableString = "CREATE TABLE IF NOT EXISTS person(Id INTEGER PRIMARY KEY,name TEXT,age INTEGER);"
             var createTableStatement: OpaquePointer? = nil
