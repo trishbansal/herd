@@ -16,14 +16,16 @@ class Walk {
     var end_loc: String = ""        //using str as placeholder  
     var req_time: String = ""       //using str as placeholder
     var start_time: String = ""     //when the walk started so we can time it? [can be removed]
+    var walk_state: String = ""     //TODO: make this statemachine/enum equivalent
     
     
-    init(wid: Int, shepherd_uid: Int, start_loc: String, end_loc: String, req_time: String, start_time: String) {
+    init(wid: Int, shepherd_uid: Int, start_loc: String, end_loc: String, req_time: String, start_time: String, walk_state: String) {
         self.wid = wid
         self.shepherd_uid = shepherd_uid
         self.start_loc = start_loc
         self.end_loc = end_loc
         self.req_time = req_time
         self.start_time = start_time
+        self.walk_state = walk_state
     }
 }
