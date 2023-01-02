@@ -11,7 +11,8 @@ import SQLite3
 class dbHelper {
     init() {
         db = openDatabase()
-        createTable()
+        create_user_table()
+        create_walk_table()
     }
     
 //    TODO: edit class names; make new class names; edit/make attribute names
@@ -80,53 +81,99 @@ class dbHelper {
     }
     
     
-    func insert(id:Int, name:String, age:Int)
-    {
-        let persons = read()
-        for p in persons
-        {
-            if p.id == id
-            {
-                return
-            }
-        }
-        let insertStatementString = "INSERT INTO person (Id, name, age) VALUES (?, ?, ?);"
-        var insertStatement: OpaquePointer? = nil
-        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
-            sqlite3_bind_int(insertStatement, 1, Int32(id))
-            sqlite3_bind_text(insertStatement, 2, (name as NSString).utf8String, -1, nil)
-            sqlite3_bind_int(insertStatement, 3, Int32(age))
-            
-            if sqlite3_step(insertStatement) == SQLITE_DONE {
-                print("Successfully inserted row.")
-            } else {
-                print("Could not insert row.")
-            }
-        } else {
-            print("INSERT statement could not be prepared.")
-        }
-        sqlite3_finalize(insertStatement)
-    }
+    //TODO: !!
     
-    func read() -> [Person] {
-        let queryStatementString = "SELECT * FROM person;"
+//    func insert(id:Int, name:String, age:Int)
+//    {
+//        let persons = read()
+//        for p in persons
+//        {
+//            if p.id == id
+//            {
+//                return
+//            }
+//        }
+//        let insertStatementString = "INSERT INTO person (Id, name, age) VALUES (?, ?, ?);"
+//        var insertStatement: OpaquePointer? = nil
+//        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+//            sqlite3_bind_int(insertStatement, 1, Int32(id))
+//            sqlite3_bind_text(insertStatement, 2, (name as NSString).utf8String, -1, nil)
+//            sqlite3_bind_int(insertStatement, 3, Int32(age))
+//
+//            if sqlite3_step(insertStatement) == SQLITE_DONE {
+//                print("Successfully inserted row.")
+//            } else {
+//                print("Could not insert row.")
+//            }
+//        } else {
+//            print("INSERT statement could not be prepared.")
+//        }
+//        sqlite3_finalize(insertStatement)
+//    }
+    
+    func read_user() -> [User] {
+        let queryStatementString = "SELECT * FROM user;"
         var queryStatement: OpaquePointer? = nil
-        var psns : [Person] = []
+        var psns : [User] = []
         if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
             while sqlite3_step(queryStatement) == SQLITE_ROW {
                 let id = sqlite3_column_int(queryStatement, 0)
                 let name = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
                 let year = sqlite3_column_int(queryStatement, 2)
-                psns.append(Person(id: Int(id), name: name, age: Int(year)))
-                print("Query Result:")
-                print("\(id) | \(name) | \(year)")
+                psns.append(User(uid: <#T##Int#>, fname: <#T##String#>, lname: <#T##String#>, email: <#T##String#>, pronouns: <#T##String#>, state: <#T##String#>))
+//                print("Query Result:")
+//                print("\(id) | \(name) | \(year)")
             }
         } else {
-            print("SELECT statement could not be prepared")
+            print("SELECT statement for user table could not be prepared")
         }
         sqlite3_finalize(queryStatement)
         return psns
     }
+    
+    func read_walk() -> [Walk] {
+        let queryStatementString = "SELECT * FROM walk;"
+        var queryStatement: OpaquePointer? = nil
+        var psns : [Walk] = []
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                let id = sqlite3_column_int(queryStatement, 0)
+                let name = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
+                let year = sqlite3_column_int(queryStatement, 2)
+                psns.append(Walk(wid: <#T##Int#>, shepherd_uid: <#T##Int#>, start_loc: <#T##String#>, end_loc: <#T##String#>, req_time: <#T##String#>, start_time: <#T##String#>, walk_state: <#T##String#>))
+//                print("Query Result:")
+//                print("\(id) | \(name) | \(year)")
+            }
+        } else {
+            print("SELECT statement for walk table could not be prepared")
+        }
+        sqlite3_finalize(queryStatement)
+        return psns
+    }
+    
+    
+//    func read() -> [Person] {
+//        let queryStatementString = "SELECT * FROM person;"
+//        var queryStatement: OpaquePointer? = nil
+//        var psns : [Person] = []
+//        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+//            while sqlite3_step(queryStatement) == SQLITE_ROW {
+//                let id = sqlite3_column_int(queryStatement, 0)
+//                let name = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
+//                let year = sqlite3_column_int(queryStatement, 2)
+//                psns.append(Person(id: Int(id), name: name, age: Int(year)))
+//                print("Query Result:")
+//                print("\(id) | \(name) | \(year)")
+//            }
+//        } else {
+//            print("SELECT statement could not be prepared")
+//        }
+//        sqlite3_finalize(queryStatement)
+//        return psns
+//    }
+    
+    
+    
     
     func deleteByID(id:Int) {
         let deleteStatementStirng = "DELETE FROM person WHERE Id = ?;"
