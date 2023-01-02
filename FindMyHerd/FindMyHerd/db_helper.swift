@@ -249,19 +249,70 @@ class dbHelper {
     
     
     
-    func deleteByID(id:Int) {
-        let deleteStatementStirng = "DELETE FROM person WHERE Id = ?;"
+    func delete_user_row_by_uid(uid: Int) {
+        let deleteStatementStirng = "DELETE FROM user WHERE uid = ?;"
         var deleteStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, deleteStatementStirng, -1, &deleteStatement, nil) == SQLITE_OK {
-            sqlite3_bind_int(deleteStatement, 1, Int32(id))
+            sqlite3_bind_int(deleteStatement, 1, Int32(uid))
             if sqlite3_step(deleteStatement) == SQLITE_DONE {
                 print("Successfully deleted row.")
             } else {
                 print("Could not delete row.")
             }
         } else {
-            print("DELETE statement could not be prepared")
+            print("DELETE statement for user table could not be prepared")
         }
         sqlite3_finalize(deleteStatement)
     }
+    
+    
+    func delete_walk_row_by_wid(wid: Int) {
+        let deleteStatementStirng = "DELETE FROM walk WHERE wid = ?;"
+        var deleteStatement: OpaquePointer? = nil
+        if sqlite3_prepare_v2(db, deleteStatementStirng, -1, &deleteStatement, nil) == SQLITE_OK {
+            sqlite3_bind_int(deleteStatement, 1, Int32(wid))
+            if sqlite3_step(deleteStatement) == SQLITE_DONE {
+                print("Successfully deleted row.")
+            } else {
+                print("Could not delete row.")
+            }
+        } else {
+            print("DELETE statement for walk table could not be prepared")
+        }
+        sqlite3_finalize(deleteStatement)
+    }
+    
+    //used to delete all walks started by a certain user; TODO: is this right lol??
+    func delete_walk_row_by_uid(uid: Int) {
+        let deleteStatementStirng = "DELETE FROM walk WHERE uid = ?;"
+        var deleteStatement: OpaquePointer? = nil
+        if sqlite3_prepare_v2(db, deleteStatementStirng, -1, &deleteStatement, nil) == SQLITE_OK {
+            sqlite3_bind_int(deleteStatement, 1, Int32(uid))
+            if sqlite3_step(deleteStatement) == SQLITE_DONE {
+                print("Successfully deleted.")
+            } else {
+                print("Could not delete row.")
+            }
+        } else {
+            print("DELETE statement for walk table could not be prepared")
+        }
+        sqlite3_finalize(deleteStatement)
+    }
+    
+    
+//    func deleteByID(id:Int) {
+//        let deleteStatementStirng = "DELETE FROM person WHERE Id = ?;"
+//        var deleteStatement: OpaquePointer? = nil
+//        if sqlite3_prepare_v2(db, deleteStatementStirng, -1, &deleteStatement, nil) == SQLITE_OK {
+//            sqlite3_bind_int(deleteStatement, 1, Int32(id))
+//            if sqlite3_step(deleteStatement) == SQLITE_DONE {
+//                print("Successfully deleted row.")
+//            } else {
+//                print("Could not delete row.")
+//            }
+//        } else {
+//            print("DELETE statement could not be prepared")
+//        }
+//        sqlite3_finalize(deleteStatement)
+//    }
 }
