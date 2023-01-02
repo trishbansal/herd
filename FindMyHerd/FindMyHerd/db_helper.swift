@@ -83,6 +83,76 @@ class dbHelper {
     
     //TODO: !!
     
+//    var uid: Int = 0
+//    var first_name: String = ""
+//    var last_name: String = ""
+//    var email: String = ""
+//    var pronouns: String = ""
+//    var state: String = ""
+//    (uid, first_name, last_name, email, pronouns, state)
+    
+//    func insert_user(id:Int, name:String, age:Int)
+    
+    func insert_user(uid: Int, first_name: String, last_name: String, email: String, pronouns: String, state: String)
+    {
+        let users = read_user()
+        for x in users
+        {
+            if x.uid == uid
+            {
+                return
+            }
+        }
+        let insertStatementString = "INSERT INTO user (uid, first_name, last_name, email, pronouns, state) VALUES (?, ?, ?, ?, ?, ?);"
+        var insertStatement: OpaquePointer? = nil
+        
+        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+            sqlite3_bind_int(insertStatement, 1, Int32(uid))
+            sqlite3_bind_text(insertStatement, 2, (first_name as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 3, (last_name as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 4, (email as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 5, (pronouns as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 6, (state as NSString).utf8String, -1, nil)
+            
+            if sqlite3_step(insertStatement) == SQLITE_DONE {
+                print("Successfully inserted row.")
+            } else {
+                print("Could not insert row.")
+            }
+        } else {
+            print("INSERT statement for user table could not be prepared.")
+        }
+        sqlite3_finalize(insertStatement)
+    }
+    
+//    func insert(id:Int, name:String, age:Int)
+//    {
+//        let persons = read()
+//        for p in persons
+//        {
+//            if p.id == id
+//            {
+//                return
+//            }
+//        }
+//        let insertStatementString = "INSERT INTO person (Id, name, age) VALUES (?, ?, ?);"
+//        var insertStatement: OpaquePointer? = nil
+//        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+//            sqlite3_bind_int(insertStatement, 1, Int32(id))
+//            sqlite3_bind_text(insertStatement, 2, (name as NSString).utf8String, -1, nil)
+//            sqlite3_bind_int(insertStatement, 3, Int32(age))
+//
+//            if sqlite3_step(insertStatement) == SQLITE_DONE {
+//                print("Successfully inserted row.")
+//            } else {
+//                print("Could not insert row.")
+//            }
+//        } else {
+//            print("INSERT statement could not be prepared.")
+//        }
+//        sqlite3_finalize(insertStatement)
+//    }
+    
 //    func insert(id:Int, name:String, age:Int)
 //    {
 //        let persons = read()
