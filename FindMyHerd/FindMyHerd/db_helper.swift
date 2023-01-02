@@ -20,18 +20,15 @@ class dbHelper {
     let dbPath: String = "myDb.sqlite"
     var db:OpaquePointer?
 
-    func openDatabase() -> OpaquePointer?
-    {
+    func openDatabase() -> OpaquePointer? {
         let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent(dbPath)
         var db: OpaquePointer? = nil
-        if sqlite3_open(fileURL.path, &db) != SQLITE_OK
-        {
+        if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
             print("error opening database")
             return nil
         }
-        else
-        {
+        else {
             print("Successfully opened connection to database at \(dbPath)")
             return db
         }
@@ -49,10 +46,8 @@ class dbHelper {
     func create_user_table() {
         let createTableString = user_table_cmd
         var createTableStatement: OpaquePointer? = nil
-        if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK
-        {
-            if sqlite3_step(createTableStatement) == SQLITE_DONE
-            {
+        if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK {
+            if sqlite3_step(createTableStatement) == SQLITE_DONE {
                 print("user table created.")
             } else {
                 print("user table could not be created.")
@@ -66,10 +61,8 @@ class dbHelper {
     func create_walk_table() {
         let createTableString = walk_table_cmd
         var createTableStatement: OpaquePointer? = nil
-        if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK
-        {
-            if sqlite3_step(createTableStatement) == SQLITE_DONE
-            {
+        if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK {
+            if sqlite3_step(createTableStatement) == SQLITE_DONE {
                 print("walk table created.")
             } else {
                 print("walk table could not be created.")
@@ -93,13 +86,11 @@ class dbHelper {
     
 //    func insert_user(id:Int, name:String, age:Int)
     
-    func insert_user(uid: Int, first_name: String, last_name: String, email: String, pronouns: String, state: String)
-    {
+    func insert_user(uid: Int, first_name: String, last_name: String, email: String, pronouns: String, state: String) {
         let users = read_user()
         for x in users
         {
-            if x.uid == uid
-            {
+            if x.uid == uid {
                 return
             }
         }
@@ -125,33 +116,46 @@ class dbHelper {
         sqlite3_finalize(insertStatement)
     }
     
-//    func insert(id:Int, name:String, age:Int)
-//    {
-//        let persons = read()
-//        for p in persons
-//        {
-//            if p.id == id
-//            {
-//                return
-//            }
-//        }
-//        let insertStatementString = "INSERT INTO person (Id, name, age) VALUES (?, ?, ?);"
-//        var insertStatement: OpaquePointer? = nil
-//        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
-//            sqlite3_bind_int(insertStatement, 1, Int32(id))
-//            sqlite3_bind_text(insertStatement, 2, (name as NSString).utf8String, -1, nil)
-//            sqlite3_bind_int(insertStatement, 3, Int32(age))
-//
-//            if sqlite3_step(insertStatement) == SQLITE_DONE {
-//                print("Successfully inserted row.")
-//            } else {
-//                print("Could not insert row.")
-//            }
-//        } else {
-//            print("INSERT statement could not be prepared.")
-//        }
-//        sqlite3_finalize(insertStatement)
-//    }
+    
+//    var wid: Int = 0
+//    var shepherd_uid: Int = 0
+//    var start_loc: String = ""
+//    var end_loc: String = ""
+//    var req_time: String = ""
+//    var start_time: String = ""
+//    var walk_state: String = ""
+//    (wid, shepherd_uid, start_loc, end_loc, req_time, start_time, walk_state)
+    
+    //TODO: use datetime object!!! [https://stackoverflow.com/questions/49143444/swift-sqlite-database-how-to-insert-date-field]
+    func insert_walk(wid: Int, shepherd_uid: Int, start_loc: String, end_loc: String, req_time: String, start_time: String, walk_state: String) {
+        let walks = read_walk()
+        for y in walks
+        {
+            if y.wid == wid {
+                return
+            }
+        }
+        let insertStatementString = "INSERT INTO walk (wid, shepherd_uid, start_loc, end_loc, req_time, start_time, walk_state) VALUES (?, ?, ?, ?, ?, ?, ?);"
+        var insertStatement: OpaquePointer? = nil
+        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+            sqlite3_bind_int(insertStatement, 1, Int32(wid))
+            sqlite3_bind_int(insertStatement, 2, Int32(shepherd_uid))
+            sqlite3_bind_text(insertStatement, 3, (start_loc as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 4, (end_loc as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 5, (req_time as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 6, (start_time as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 7, (walk_state as NSString).utf8String, -1, nil)
+
+            if sqlite3_step(insertStatement) == SQLITE_DONE {
+                print("Successfully inserted row.")
+            } else {
+                print("Could not insert row.")
+            }
+        } else {
+            print("INSERT statement for walk table could not be prepared.")
+        }
+        sqlite3_finalize(insertStatement)
+    }
     
 //    func insert(id:Int, name:String, age:Int)
 //    {
